@@ -2,12 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const team = [
+    {
+      id: 1, 
+      name: "Luiz Carlos Marinho Junior",
+      photo: "/images/fotos/luiz-marinho.webp",
+    },
+  ];
+
+  const projects = [
+    {
+      id: 1, 
+      title: "Agrofy API",
+      photo: "/images/Logotipos/agrofy-api-logo.webp",
+      alt: "Foto da agrofy api",
+      desc: "Projeto de software para agricultura familiar",
+      link: "https://github.com/artful-tech/agrofy-api",
+    },
+    {
+      id: 2, 
+      title: "Artful Website",
+      photo: "/images/Logotipos/artful-website.webp",
+      alt: "Foto do website da artful",
+      desc: "Projeto do website da artful",
+      link: "https://github.com/artful-tech/website",
+    },
+  ]
+
   return (
     <div className="flex flex-col gap-20 pb-20">
       {/* Hero Section */}
       <section id="inicio" className="relative h-[80vh] w-full overflow-hidden">
         <Image
-          src="/images/Banners/banner-artful/main-banner-social-network-artful.jpg"
+          src="/images/Banners/banner-artful/background-image.webp"
           alt="Artful Brasil Banner"
           fill
           className="object-cover brightness-50"
@@ -69,10 +96,11 @@ export default function Home() {
           </div>
           <div className="relative aspect-square overflow-hidden rounded-3xl">
             <Image
-              src="/images/Logotipos/Logotipo Azul Artful Brasil.png"
+              src="/images/Banners/banner-artful/banner-2.webp"
               alt="Sobre Artful Brasil"
               fill
               className="object-contain p-8"
+              style={{borderRadius: "150%"}}
             />
           </div>
         </div>
@@ -88,17 +116,23 @@ export default function Home() {
             </p>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-md dark:bg-zinc-900">
-                <div className="aspect-video bg-zinc-200 dark:bg-zinc-800">
-                   {/* Placeholder for project image */}
+            {projects.map((i) => (
+              <div key={i.id} className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-md dark:bg-zinc-900">
+                <div className="relative aspect-video bg-zinc-200 dark:bg-zinc-800">
+                   <Image
+                      src={i.photo}
+                      alt="Artful Brasil Banner"
+                      fill
+                      className="object-cover brightness-80"
+                      priority
+                    />
                 </div>
                 <div className="p-6">
-                  <h3 className="mb-2 font-bold">Projeto Inovador {i}</h3>
+                  <h3 className="mb-2 font-bold">{i.title}</h3>
                   <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400">
-                    Descrição breve de uma solução tecnológica desenvolvida pela Artful Brasil.
+                    {i.desc}
                   </p>
-                  <Link href="https://github.com/artful-tech" className="text-sm font-semibold text-blue-600 hover:underline">
+                  <Link href={i.link} className="text-sm font-semibold text-blue-600 hover:underline">
                     Ver no GitHub →
                   </Link>
                 </div>
@@ -117,12 +151,18 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-12">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex flex-col items-center">
-              <div className="mb-4 h-32 w-32 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-                {/* Placeholder for team member image */}
+          {team.map((i) => (
+            <div key={i.id} className="flex flex-col items-center">
+              <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full  dark:bg-zinc-800">
+                <Image
+                    src={i.photo}
+                    alt="Artful Brasil Banner"
+                    fill
+                    className="object-cover brightness-80"
+                    priority
+                />
               </div>
-              <h3 className="font-bold">Especialista Artful {i}</h3>
+              <h3 className="font-bold">{i.name}</h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400">Desenvolvedor & Pesquisador</p>
             </div>
           ))}
